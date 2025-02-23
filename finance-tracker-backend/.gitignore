@@ -1,0 +1,25 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment files
+.env
+.flaskenv
+
+# Ignore SQLite database
+finance_tracker.db
+
+# Ignore instance folder (if used for sensitive configs)
+instance/
+
+# Ignore logs
+*.log
+
+# Ignore virtual environments (if not using Conda)
+venv/
+env/
+
+# Ignore migrations cache (optional, but usually safe to push migrations/)
+migrations/versions/*.pyc
