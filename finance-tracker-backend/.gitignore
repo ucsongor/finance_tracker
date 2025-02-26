@@ -23,3 +23,6 @@ env/
 
 # Ignore migrations cache (optional, but usually safe to push migrations/)
 migrations/versions/*.pyc
+
+# Ignore secrets
+secret_datas.py
