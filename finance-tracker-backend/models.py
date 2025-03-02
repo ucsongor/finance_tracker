@@ -9,6 +9,9 @@ class User(db.Model):
     email = db.Column(db.String(150), unique=True, nullable=False)
     is_admin = db.Column(db.Boolean, default=False)
 
+    # One-to-Many relationship: A user can have multiple transactions
+    transactions = db.relationship('Transaction', backref='user', lazy=True)
+
 
 class Transaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -16,4 +19,4 @@ class Transaction(db.Model):
     amount = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(20), nullable=False)
     date = db.Column(db.DateTime, server_default=db.func.current_timestamp())
-
+    description = db.Column(db.String(255))

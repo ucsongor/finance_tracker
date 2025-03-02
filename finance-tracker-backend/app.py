@@ -4,7 +4,6 @@ from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 import os
 from dotenv import load_dotenv
-
 from extensions import db, migrate, jwt
 
 # Load .env into os vars
@@ -30,8 +29,10 @@ from models import User, Transaction
 # Register Blueprints
 from auth import auth_bp
 from user import user_bp
+from transaction import transaction_bp
 app.register_blueprint(auth_bp, url_prefix="/auth")
 app.register_blueprint(user_bp, url_prefix="/user")
+app.register_blueprint(transaction_bp, url_prefix="/transaction")
 
 
 @app.route('/')

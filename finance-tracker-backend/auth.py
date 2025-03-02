@@ -15,16 +15,18 @@ def register():
 
     # Validations
     if not data or "username" not in data or "password" not in data or "email" not in data or "name" not in data:
-        return jsonify({"error": "Missing required fields"}), 400
+        return jsonify({"message": "Missing required fields"}), 400
 
     if models.User.query.filter_by(username=data["username"]).first():
-        return jsonify({"error": "The given username is already taken"}), 400
+        return jsonify({"message": "The given username is already taken"}), 400
 
     # Create a new user if passed validations
-    new_user = models.User(username=data["username"],
-                           password_hash=generate_password_hash(data["password"]),
-                           name=data["name"],
-                           email=data["email"])
+    new_user = models.User(
+        username=data["username"],
+        password_hash=generate_password_hash(data["password"]),
+        name=data["name"],
+        email=data["email"]
+    )
     db.session.add(new_user)
     db.session.commit()
 

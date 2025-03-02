@@ -6,12 +6,14 @@ from extensions import db
 
 user_bp = Blueprint("user", __name__, url_prefix="/user")
 
+
 # Update user details, protected
 @user_bp.route("/update", methods=["PUT"])
 @jwt_required()
 def update():
     data = request.get_json()
-    user = models.User.query.get(get_jwt_identity())
+    user_id = get_jwt_identity()
+    user = models.User.query.get()
 
     # Validations
     if not user:
@@ -35,7 +37,8 @@ def update():
 @user_bp.route("/delete", methods=["DELETE"])
 @jwt_required()
 def delete():
-    user = models.User.query.get(get_jwt_identity())
+    user_id = get_jwt_identity()
+    user = models.User.query.get(user_id)
 
     if not user:
         return jsonify({"message": "User not founds, please log in again"}), 404
